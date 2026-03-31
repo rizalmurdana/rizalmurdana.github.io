@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PMI ADUAN - Pengaduan Pekerja Migran Indonesia</title>
+<meta name="description" content="Laporkan masalah migran Indonesia secara aman & cepat">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f3f4f6;color:#1f2937;line-height:1.6;overscroll-behavior:none}
+.container{max-width:1000px;margin:auto;padding:0 15px}
+header{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.header-top{display:flex;justify-content:space-between;align-items:center;padding:15px 0}
+.logo{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#2563eb,#1d4ed8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.menu{display:flex;gap:20px;list-style:none}
+.menu a{color:#374151;text-decoration:none;font-weight:500;padding:8px 16px;border-radius:25px;transition:all .3s}
+.menu a:hover{background:#dbeafe;color:#1d4ed8}
+.hero{background:linear-gradient(135deg,#1e40af 0%,#3b82f6 100%);color:#fff;text-align:center;padding:80px 20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent)}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:700;margin-bottom:15px}
+.hero-subtitle{font-size:clamp(1.1rem,3vw,1.3rem);opacity:.95;margin-bottom:30px}
+.btn{display:inline-block;padding:15px 30px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-decoration:none;border-radius:50px;font-weight:600;font-size:1.1rem;transition:all .3s;box-shadow:0 4px 15px rgba(16,185,129,.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(16,185,129,.4)}
+.btn-secondary{background:transparent;border:2px solid #fff}
+.btn-secondary:hover{background:#fff;color:#1e40af}
+.card{background:#fff;border-radius:20px;padding:30px;margin:20px 0;box-shadow:0 10px 40px rgba(0,0,0,.08);border:1px solid #e5e7eb;transition:all .3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.card h2{font-size:1.7rem;color:#1e40af;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{font-size:1.3rem;color:#374151;margin:20px 0 10px 0}
+.form-grid{display:grid;gap:20px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:15px;border:2px solid #e5e7eb;border-radius:12px;font-size:1rem;font-family:inherit;transition:all .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.form-group textarea{min-height:100px;resize:vertical}
+label{font-weight:500;color:#374151;margin-bottom:8px;display:block}
+.upload-area{border:2px dashed #d1d5db;border-radius:12px;padding:30px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden;background:#fafbfc}
+.upload-area:hover{border-color:#3b82f6;background:#eff6ff}
+.upload-area.dragover{border-color:#10b981;background:#ecfdf5}
+.upload-icon{font-size:3rem;color:#9ca3af;margin-bottom:15px}
+.upload-text{font-weight:500;color:#6b7280;margin-bottom:10px}
+.upload-files{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.upload-file{background:#e5e7eb;padding:8px 12px;border-radius:20px;font-size:.9rem;display:flex;align-items:center;gap:5px;max-width:200px}
+.upload-file i{color:#6b7280}
+.file-input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.alert{padding:15px 20px;border-radius:12px;margin:20px 0;font-weight:500}
+.alert-success{background:#d1fae5;border-left:4px solid #10b981;color:#065f46}
+.alert-info{background:#dbeafe;border-left:4px solid #3b82f6;color:#1e40af}
+.alert-warning{background:#fef3c7;border-left:4px solid #f59e0b;color:#92400e}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.feature-icon{font-size:3.5rem;background:linear-gradient(135deg,#3b82f6,#1d4ed8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:15px}
+.table{width:100%;border-collapse:collapse;margin:20px 0}
+.table th,.table td{padding:15px;text-align:left;border-bottom:1px solid #e5e7eb}
+.table th{background:#f8fafc;font-weight:600;color:#374151}
+.table tr:hover{background:#f8fafc}
+.progress{background:#e5e7eb;height:10px;border-radius:5px;overflow:hidden;margin:10px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:5px;transition:width .5s;width:0%}
+.wa-float{position:fixed;bottom:25px;right:25px;width:65px;height:65px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;text-decoration:none;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s;z-index:1000;animation:bounce 2s infinite}
+.tg-float{position:fixed;bottom:100px;right:25px;width:65px;height:65px;background:#0088cc;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;text-decoration:none;box-shadow:0 8px 25px rgba(0,136,204,.4);transition:all .3s;z-index:1000;animation:bounce 2s infinite}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}60%{transform:translateY(-5px)}}
+.loading{display:none;align-items:center;gap:15px;padding:30px;justify-content:center}
+.loading.active{display:flex}
+.loading i{font-size:2rem;color:#3b82f6;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{background:#1f2937;color:#d1d5db;padding:40px 0 20px;text-align:center}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-bottom:30px}
+.footer-link a{color:#94a3b8;text-decoration:none;display:block;margin:5px 0}
+.footer-link a:hover{color:#fff}
+@media(max-width:768px){
+.menu{flex-direction:column;gap:10px}
+.hero{padding:60px 20px}
+.grid{grid-template-columns:1fr}
+.form-grid{grid-template-columns:1fr}
+.table{font-size:.9rem}
+.table th,.table td{padding:10px}
+.upload-area{padding:20px}
+.wa-float,.tg-float{width:55px;height:55px;font-size:1.5rem}
+.tg-float{bottom:85px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<div class="header-top">
+<div class="logo"><i class="fas fa-plane-departure"></i> PMI ADUAN</div>
+<ul class="menu">
+<li><a href="#home">🏠 Beranda</a></li>
+<li><a href="#adu">📝 Pengaduan</a></li>
+<li><a href="#track">🔍 Tracking</a></li>
+<li><a href="#help">❓ Bantuan</a></li>
+</ul>
+</div>
+</div>
+</header>
+
+<section id="home" class="hero">
+<div class="container">
+<h1>🚨 Laporkan Masalah Anda Sekarang!</h1>
+<p class="hero-subtitle">Pengaduan aman untuk PMI Indonesia di 50+ negara. Respon <strong>24 jam</strong></p>
+<a href="#adu" class="btn">📱 Buat Pengaduan</a>
+<a href="#track" class="btn btn-secondary">🔍 Cek Status</a>
+</div>
+</section>
+
+<section>
+<div class="container">
+<h2 style="text-align:center;font-size:2.2rem;margin:50px 0 30px">✨ Fitur Unggulan</h2>
+<div class="grid">
+<div class="card">
+<div class="feature-icon"><i class="fas fa-lock"></i></div>
+<h3>100% Aman</h3>
+<p>Enkripsi end-to-end, bisa anonim</p>
+</div>
+<div class="card">
+<div class="feature-icon"><i class="fas fa-bolt"></i></div>
+<h3>Super Cepat</h3>
+<p>Respon pertama 24 jam</p>
+</div>
+<div class="card">
+<div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+<h3>Mobile First</h3>
+<p>Akses dari HP apa saja</p>
+</div>
+<div class="card">
+<div class="feature-icon"><i class="fas fa-camera"></i></div>
+<h3>Upload Bukti</h3>
+<p>Foto, kontrak, dokumen pendukung</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="adu">
+<div class="container">
+<div class="card">
+<h2><i class="fas fa-edit"></i> Buat Pengaduan Baru</h2>
+<div class="form-grid">
+<div class="form-group">
+<label>👤 Nama (Opsional)</label>
+<input id="nama" placeholder="Isi jika mau disebutkan" maxlength="50">
+</div>
+<div class="form-group">
+<label>📱 WhatsApp Aktif *</label>
+<input id="hp" placeholder="08xxxxxxxxx" required maxlength="14">
+</div>
+<div class="form-group">
+<label>🌍 Negara Kerja *</label>
+<select id="negara" required>
+<option value="">Pilih negara...</option>
+<option>🇲🇾 Malaysia</option><option>🇸🇬 Singapura</option><option>🇹🇭 Thailand</option>
+<option>🇸🇦 Arab Saudi</option><option>🇦🇪 UAE</option><option>🇶🇦 Qatar</option>
+<option>🇰🇷 Korea Selatan</option><option>🇯🇵 Jepang</option><option>🇭🇰 Hong Kong</option>
+<option>🇹🇼 Taiwan</option><option>🇺🇸 Amerika</option><option>🇦🇺 Australia</option>
+</select>
+</div>
+<div class="form-group">
+<label>🚨 Jenis Masalah *</label>
+<select id="masalah" required>
+<option value="">Pilih masalah...</option>
+<option>💰 Gaji tidak dibayar</option><option>📄 Paspor ditahan</option>
+<option>👊 Kekerasan fisik</option><option>⏰ Overwork 12+ jam</option>
+<option>📵 Tidak ada libur</option><option>📜 Kontrak bohong</option>
+<option>💸 Biaya tambahan</option><option>❓ Lainnya</option>
+</select>
+</div>
+<div class="form-group">
+<label>📝 Ceritakan Detail *</label>
+<textarea id="cerita" placeholder="Jelaskan kronologi masalah secara lengkap..." required maxlength="1000"></textarea>
+</div>
+<div class="form-group">
+<label>📸 Upload Bukti (Foto/Kontrak)</label>
+<div class="upload-area" id="uploadArea">
+<i class="fas fa-cloud-upload-alt upload-icon"></i>
+<div class="upload-text">Klik atau drag file (JPG/PNG/PDF)</div>
+<input type="file" id="fileInput" class="file-input" accept="image/*,.pdf" multiple>
+<div id="uploadFiles" class="upload-files"></div>
+</div>
+</div>
+<div class="form-group">
+<label><input type="checkbox" id="anonim" checked> 🙈 Mode Anonim</label>
+<label style="display:block;margin-top:10px"><input type="checkbox" id="urgent"> 🚨 URGENT</label>
+</div>
+<button onclick="kirimAduan()" class="btn" style="width:100%;font-size:1.2rem">
+<i class="fas fa-paper-plane"></i> 🚀 KIRIM KE TELEGRAM
+</button>
+</div>
+<div id="loading" class="loading">
+<i class="fas fa-spinner"></i> Mengirim ke Telegram...
+</div>
+<div id="alert"></div>
+</div>
+</div>
+</section>
+
+<section id="track" style="background:#f8fafc">
+<div class="container">
+<div class="card">
+<h2><i class="fas fa-search"></i> Tracking Status</h2>
+<div class="form-grid" style="max-width:500px;margin:0 auto">
+<div class="form-group">
+<input id="notiket" placeholder="TKTxxxxxxxxxx" style="font-family:monospace;font-size:1.1rem;text-align:center">
+</div>
+<button onclick="cekStatus()" class="btn" style="width:100%">🔍 CEK STATUS</button>
+</div>
+<div id="hasilCek" style="margin-top:30px"></div>
+</div>
+</div>
+</section>
+
+<section id="help">
+<div class="container">
+<h2 style="text-align:center;font-size:2.2rem;margin:50px 0 30px">📞 Kontak Darurat</h2>
+<div class="grid">
+<div class="card">
+<div style="font-size:2.5rem;margin-bottom:15px">🇲🇾</div>
+<h3>KBRI Malaysia</h3>
+<p><strong>Hotline:</strong> +60-3-2116-4000</p>
+<a href="https://wa.me/601234567890" class="btn" style="width:100%">💬 Chat WA</a>
+</div>
+<div class="card">
+<div style="font-size:2.5rem;margin-bottom:15px">🇸🇦</div>
+<h3>KBRI Arab Saudi</h3>
+<p><strong>Hotline:</strong> +966-11-482-8566</p>
+<a href="https://wa.me/9665912345678" class="btn" style="width:100%">💬 Chat WA</a>
+</div>
+<div class="card">
+<div style="font-size:2.5rem;margin-bottom:15px">🇸🇬</div>
+<h3>KBRI Singapura</h3>
+<p><strong>Hotline:</strong> +65-6737-3982</p>
+<a href="https://wa.me/6591234567" class="btn" style="width:100%">💬 Chat WA</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div>
+<h4>PMI ADUAN</h4>
+<p>Layanan pengaduan resmi Pekerja Migran Indonesia</p>
+</div>
+<div class="footer-link">
+<h4>Quick Links</h4>
+<a href="#home">Beranda</a>
+<a href="#adu">Pengaduan</a>
+<a href="#track">Tracking</a>
+<a href="#help">Bantuan</a>
+</div>
+</div>
+<p style="border-top:1px solid #374151;padding-top:20px;margin-top:20px">© 2024 PMI ADUAN - BP2MI Terdaftar | <strong>100% Gratis</strong></p>
+</div>
+</footer>
+
+<a href="https://wa.me/6282273038353" class="wa-float" target="_blank" title="WhatsApp Admin">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<a href="#" onclick="chatTelegram()" class="tg-float" target="_blank" title="Telegram Admin">
+<i class="fab fa-telegram-plane"></i>
+</a>
+
+<script>
+let dataAduan=JSON.parse(localStorage.getItem('pmi_aduan'))||[];
+let uploadedFiles=[];
+
+document.addEventListener('DOMContentLoaded',function(){
+const uploadArea=document.getElementById('uploadArea');
+const fileInput=document.getElementById('fileInput');
+uploadArea.addEventListener('click',()=>fileInput.click());
+uploadArea.addEventListener('dragover',e=>{e.preventDefault();uploadArea.classList.add('dragover')});
+uploadArea.addEventListener('dragleave',()=>uploadArea.classList.remove('dragover'));
+uploadArea.addEventListener('drop',e=>{e.preventDefault();uploadArea.classList.remove('dragover');handleFiles(e.dataTransfer.files)});
+fileInput.addEventListener('change',e=>handleFiles(e.target.files));
+});
+
+function handleFiles(files){
+const uploadFiles=document.getElementById('uploadFiles');
+Array.from(files).forEach(file=>{
+if(file.size>5*1024*1024)return tampilAlert('File terlalu besar!','warning');
+const reader=new FileReader();
+reader.onload=function(e){
+uploadedFiles.push(file.name);
+const fileDiv=document.createElement('div');
+fileDiv.className='upload-file';
+fileDiv.innerHTML=`📎 ${file.name} <i class="fas fa-times" onclick="this.parentElement.remove()"></i>`;
+uploadFiles.appendChild(fileDiv);
+};
+reader.readAsData
